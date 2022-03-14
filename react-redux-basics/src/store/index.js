@@ -33,8 +33,6 @@ const counterSlice = createSlice({
   }
 })
 
-
-
 /* NORMAL REDUX 
 
 //reducer which takes in all of the action types
@@ -80,4 +78,6 @@ const store = configureStore({
   reducer: counterSlice.reducer
 });
 
+
+export const counterActions = counterSlice.actions;
 export default store;

@@ -1,5 +1,7 @@
 import classes from './Counter.module.css';
 
+import { counterActions } from '../store/index';
+
 //useSelector allows us to target a part of the state that we want
 import { useSelector, connect, useDispatch } from 'react-redux';
 
@@ -14,19 +16,21 @@ const Counter = () => {
   const dispatch = useDispatch();
 
   const incrementHandler = () => {
-    dispatch({ type: 'increment' })
+    // dispatch({ type: 'increment' })
+    dispatch(counterActions.increment())
   }
 
   const decrementHandler = () => {
-    dispatch({ type: 'decrement' })
+    // dispatch({ type: 'decrement' })
+    dispatch(counterActions.decrement())
   }
 
   const increaseHandler = () => {
-    dispatch({ type: 'increase', payload: 5 })
+    dispatch(counterActions.increase(5)) //Passing in as ({ type: 'increase' payload: 5})
   }
 
   const toggleCounterHandler = () => {
-    dispatch({ type: 'toggle' })
+    dispatch(counterActions.toggleCounter())
   };
 
   return (
