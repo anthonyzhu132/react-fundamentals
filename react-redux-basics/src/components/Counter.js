@@ -3,14 +3,14 @@ import classes from './Counter.module.css';
 import { counterActions } from '../store/index';
 
 //useSelector allows us to target a part of the state that we want
-import { useSelector, connect, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Counter = () => {
   //extracting the counter state 
   //automatically subscribes and will reload if the state changes
-  const counter = useSelector(state => state.counter);
+  const counter = useSelector(state => state.counter.counter);
 
-  const toggle = useSelector(state => state.showCounter);
+  const toggle = useSelector(state => state.counter.showCounter);
 
   //Will dispatch an action to the store that we are subscribed to
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 //intial state
-const initialState = {
+const initialCounterState = {
   counter: 0,
   showCounter: true,
 }
@@ -16,7 +16,7 @@ const initialState = {
 //In redux tool-kit, we are allowed to mutate the original state -- converts it under the hood
 const counterSlice = createSlice({
   name: 'counter',
-  initialState: initialState,
+  initialState: initialCounterState,
   reducers: {
     increment(state) {
       state.counter++;
@@ -29,6 +29,23 @@ const counterSlice = createSlice({
     },
     toggleCounter (state) {
       state.showCounter = !state.showCounter
+    }
+  }
+})
+
+const intialAuthState = {
+  isAuthenticated: false
+};
+
+const authSlice = createSlice({
+  name: 'auth',
+  initialState: intialAuthState,
+  reducers: {
+    login(state) {
+      state.isAuthenticated = true;
+    },
+    logout(state) {
+      state.isAuthenticated = false;
     }
   }
 })
@@ -74,10 +91,24 @@ const counterReducer = (state = initialState, action) => {
 //creatingt the store from the reducer
 
 //takes in a configuration object, with the reducer object
+/* For one SLICE
+
 const store = configureStore({
   reducer: counterSlice.reducer
 });
 
+*/
 
+// For Two or more slices, it maps over the reducer and has keys for whichever slice you want to access
+
+const store = configureStore({
+  reducer: { 
+    counter: counterSlice.reducer, 
+    auth: authSlice.reducer 
+  }
+})
+
+
+export const authActions = authSlice.actions;
 export const counterActions = counterSlice.actions;
 export default store;
