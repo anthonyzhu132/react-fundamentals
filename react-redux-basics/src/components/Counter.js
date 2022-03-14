@@ -1,6 +1,6 @@
 import classes from './Counter.module.css';
 
-import { counterActions } from '../store/index';
+import { counterActions } from '../store/counterSlice';
 
 //useSelector allows us to target a part of the state that we want
 import { useSelector, useDispatch } from 'react-redux';
